@@ -3976,7 +3976,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 449428666}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1332318574}
+        m_TargetAssemblyTypeName: Login, Assembly-CSharp
+        m_MethodName: LoginStudent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &449428666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11044,7 +11056,7 @@ GameObject:
   - component: {fileID: 1189839774}
   - component: {fileID: 1189839773}
   m_Layer: 5
-  m_Name: Email
+  m_Name: StudentID
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11421,7 +11433,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Email...
+  m_text: StudentID...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11510,7 +11522,7 @@ GameObject:
   - component: {fileID: 1241404029}
   m_Layer: 0
   m_Name: ServerController
-  m_TagString: Untagged
+  m_TagString: ServerController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12278,6 +12290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1332318573}
+  - component: {fileID: 1332318574}
   - component: {fileID: 1332318572}
   - component: {fileID: 1332318571}
   - component: {fileID: 1332318570}
@@ -12375,6 +12388,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1332318574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332318569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b60c4b49b61ffbd4abe07dc29027a83d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  studentIDText: {fileID: 1189839773}
+  passwordText: {fileID: 343013093}
 --- !u!1 &1347944766
 GameObject:
   m_ObjectHideFlags: 0
@@ -15007,13 +15034,13 @@ MonoBehaviour:
   passwordText: {fileID: 217337701}
   confirmPasswordText: {fileID: 1201340560}
   phoneNumberText: {fileID: 825152510}
-  studentIDText: {fileID: 805311406}
+  studentIDText: {fileID: 807321168}
   firstNameText: {fileID: 1101733195}
   lastNameText: {fileID: 1928860888}
   genderText: {fileID: 2116681489}
   birthdateText: {fileID: 1911574244}
   majorText: {fileID: 1093321423}
-  graduationYearText: {fileID: 1758751594}
+  graduationYearText: {fileID: 948000863}
   committeNameText: {fileID: 1264962867}
   positionText: {fileID: 682808562}
   roleText: {fileID: 1656724838}

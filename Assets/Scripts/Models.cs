@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class Student
 {
     public int studentID=0;
@@ -63,10 +65,11 @@ public class Student
 
         this.role = roleText;
 
-        Debug.Log($"Object Student {this.firstName} was Created\n");
+        Debug.Log($"Object Student {this.studentID} {this.firstName} was Created\n");
     }
 }
 
+[Serializable]
 public class Task
 {
     public int studentID;

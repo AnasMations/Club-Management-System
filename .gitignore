@@ -60,3 +60,5 @@ crashlytics-build.properties
 
 Club Management System/Logs/shadercompiler-UnityShaderCompiler.exe0.log
 Club Management System/Logs/shadercompiler-UnityShaderCompiler.exe1.log
+
+Assets/Scripts/PHP/connection.php
