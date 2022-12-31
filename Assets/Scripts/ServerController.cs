@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
 using UnityEngine;
+using System;
 
 public class ServerController : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class ServerController : MonoBehaviour
         
     }
 
-    public IEnumerator InsertStudentSQL(Student student)
+    public IEnumerator InsertStudentSQL(Student student, Action action = null)
     {
         WWWForm form = new WWWForm();
         form.AddField("addStudentID",  student.studentID);
@@ -47,6 +48,7 @@ public class ServerController : MonoBehaviour
             else
             {
                 Debug.Log(www.downloadHandler.text);
+                action();
             }
         }
     }
@@ -61,7 +63,7 @@ public class ServerController : MonoBehaviour
         yield return 0;
     }
 
-    public IEnumerator SelectStudentSQL(int studentID)
+    public IEnumerator SelectStudentSQL(int studentID, Action action = null)
     {
         WWWForm form = new WWWForm();
         form.AddField("selectStudentID", studentID);
@@ -93,9 +95,7 @@ public class ServerController : MonoBehaviour
                 connectedStudent.gender = response[6];
                 connectedStudent.birthDate = response[7];
 
-
-
-
+                action();
             }
         }
     }

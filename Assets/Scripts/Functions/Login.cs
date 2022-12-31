@@ -7,6 +7,7 @@ public class Login : MonoBehaviour
 {
     public TMP_InputField studentIDText;
     public TMP_InputField passwordText;
+    public GameObject HomePage;
 
     ServerController serverController;
 
@@ -25,6 +26,15 @@ public class Login : MonoBehaviour
     {
         int studentID = int.Parse(studentIDText.text);
 
-        StartCoroutine(serverController.SelectStudentSQL(studentID));
+        StartCoroutine(serverController.SelectStudentSQL(studentID, login));
+    }
+
+    void login()
+    {
+        if(serverController.connectedStudent.password.CompareTo(passwordText.text.Trim((char)8203))==0)
+        {
+            HomePage.SetActive(true);
+            this.gameObject.SetActive(false);
+        }
     }
 }

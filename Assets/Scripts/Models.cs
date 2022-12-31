@@ -41,29 +41,29 @@ public class Student
     string roleText
     )
     {
-        this.email = emailText;
+        this.email = emailText.Trim((char)8203);
 
-        this.password = passwordText;
+        this.password = passwordText.Trim((char)8203);
 
         this.studentID = studentIDInt;
 
-        this.firstName = firstNameText;
+        this.firstName = firstNameText.Trim((char)8203);
 
-        this.lastName = lastNameText;
+        this.lastName = lastNameText.Trim((char)8203);
 
-        this.gender = genderText;
+        this.gender = genderText.Trim((char)8203);
 
-        this.birthDate = birthdateText;
+        this.birthDate = birthdateText.Trim((char)8203);
 
-        this.major = majorText;
+        this.major = majorText.Trim((char)8203);
 
         this.graduationYear = graduationYearInt;
 
-        this.committeName = committeNameText;
+        this.committeName = committeNameText.Trim((char)8203);
 
-        this.position = positionText;
+        this.position = positionText.Trim((char)8203);
 
-        this.role = roleText;
+        this.role = roleText.Trim((char)8203);
 
         Debug.Log($"Object Student {this.studentID} {this.firstName} was Created\n");
     }
