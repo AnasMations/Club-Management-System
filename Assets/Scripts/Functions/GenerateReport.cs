@@ -12,7 +12,7 @@ public class GenerateReport : MonoBehaviour
 
     void Start()
     {
-        serverControllerStudents = GameObject.FindGameObjectWithTag("ServerControllerStudents").GetComponent<ServerControllerStudents>();
+        serverControllerStudents = GameObject.FindGameObjectWithTag("ServerController").GetComponent<ServerControllerStudents>();
         //ReportInfo();
     }
 
