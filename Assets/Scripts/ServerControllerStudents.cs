@@ -26,6 +26,17 @@ public class ServerControllerStudents : MonoBehaviour
         form.AddField("addGender",  student.gender);
         form.AddField("addBirthdate",  student.birthDate);
 
+        form.AddField("addWorkStatus", student.workStatus);
+        form.AddField("addRecruitmentDate", student.reqruitmentDate);
+        form.AddField("addCommitteName", student.committeName);
+
+        form.AddField("addPhoneNumber", student.phoneNumber);
+
+        form.AddField("addMajor", student.major);
+        form.AddField("addGraduationyear", student.graduationYear);
+
+        form.AddField("addRole", student.role);
+
         string URL = "http://club-management-system.000webhostapp.com/insertStudent.php";
 
         using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
@@ -89,6 +100,17 @@ public class ServerControllerStudents : MonoBehaviour
                 s.gender = response[6];
                 s.birthDate = response[7];
 
+                s.workStatus = response[8];
+                s.reqruitmentDate = response[9];
+                s.committeName = response[10];
+                
+                s.phoneNumber = response[11];
+
+                s.major = response[12];
+                s.graduationYear = int.Parse(response[13]);
+
+                s.role = response[14];
+
                 currentStudent = s;
 
                 if(action!=null) action();
@@ -106,7 +128,7 @@ public class ServerControllerStudents : MonoBehaviour
         yield return 0;
     }
 
-    IEnumerator SelectAllStudentIdsSQL(Student student)
+    IEnumerator SelectStudentIdsSQL(Student student)
     {
         yield return 0;
     }

@@ -19661,9 +19661,13 @@ MonoBehaviour:
     m_Options:
     - m_Text: ITCS
       m_Image: {fileID: 0}
+    - m_Text: BIOTECH
+      m_Image: {fileID: 0}
     - m_Text: ENG
       m_Image: {fileID: 0}
     - m_Text: BUSINESS
+      m_Image: {fileID: 0}
+    - m_Text: MOT
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

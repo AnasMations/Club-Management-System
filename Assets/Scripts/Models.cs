@@ -7,20 +7,20 @@ using UnityEngine;
 public class Student
 {
     public int studentID=0;
-    public string firstName;
-    public string lastName;
-    public string gender;
-    public string email;
-    public string password;
-    public string phoneNumber;
-    public string birthDate;
-    public string major;
-    public int graduationYear;
-    public string committeName;
-    public string position;
-    public string role;
-    public string workStatus;
-    public string reqruitmentDate;
+    public string firstName="";
+    public string lastName="";
+    public string gender="";
+    public string email="";
+    public string password="";
+    public string phoneNumber="";
+    public string birthDate="";
+    public string major="";
+    public int graduationYear=0;
+    public string committeName="";
+    public string position="";
+    public string role="";
+    public string workStatus="";
+    public string reqruitmentDate="";
     public int tasksFinished = 0;
     public int tasksInProgress = 0;
     public int tasksNotStarted = 0;
@@ -49,6 +49,8 @@ public class Student
         this.email = emailText.Trim((char)8203);
 
         this.password = passwordText.Trim((char)8203);
+
+        this.phoneNumber = phoneNumberText.Trim((char)8203);
 
         this.studentID = studentIDInt;
 

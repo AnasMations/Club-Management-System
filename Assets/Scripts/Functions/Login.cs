@@ -32,7 +32,7 @@ public class Login : MonoBehaviour
 
     void navigateToHome()
     {
-        if(student.password.CompareTo(passwordText.text.Trim((char)8203))==0)
+        if(passwordText.text!=null && student.password.CompareTo(passwordText.text.Trim((char)8203))==0)
         {
             HomePage.SetActive(true);
             this.gameObject.SetActive(false);
