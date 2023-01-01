@@ -7,7 +7,7 @@ public class MembersLoader : MonoBehaviour
     public GameObject member;
     public Transform content;
     public GameObject ReportPage;
-    int []StudentIDs = {3, 202000005};
+    int []StudentIDs;
     public ServerControllerStudents serverControllerStudents;
 
     // Update is called once per frame
@@ -18,11 +18,19 @@ public class MembersLoader : MonoBehaviour
 
     void OnEnable()
     {
-        LoadMembers();
+        LoadStudentIds();
+    }
+
+    void LoadStudentIds()
+    {
+        serverControllerStudents.SelectStudentIds("", LoadMembers);
     }
 
     void LoadMembers()
     {
+
+        StudentIDs = serverControllerStudents.studentIds;
+
         foreach(Transform child in content)
         {
             Destroy(child.gameObject);

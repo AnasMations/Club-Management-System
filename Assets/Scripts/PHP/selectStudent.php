@@ -3,6 +3,10 @@ include('connection.php');
 
 $StudentID = $_POST['selectStudentID'];
 
+if (!$connect) {
+    die("ERROR Connection failed: " . mysqli_connect_error());
+}
+
 $sql = 
 "SELECT 
 s.StudentID, s.FirstName, s.LastName, s.Email, s.Password, s.Position, s.Gender, s.Birthdate, 
@@ -17,10 +21,6 @@ LEFT JOIN College c ON s.StudentID = c.StudentID
 LEFT JOIN CommitteMember cm ON s.StudentID = cm.StudentID
 WHERE s.StudentID = $StudentID
 LIMIT 1";
-
-if (!$connect) {
-    die("ERROR Connection failed: " . mysqli_connect_error());
-}
 
 $result = mysqli_query($connect, $sql);
 if(mysqli_num_rows($result)>0)

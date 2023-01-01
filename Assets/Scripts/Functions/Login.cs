@@ -27,12 +27,13 @@ public class Login : MonoBehaviour
     {
         int studentID = int.Parse(studentIDText.text);
 
-        student = serverControllerStudents.SelectStudent(studentID, navigateToHome);
+        serverControllerStudents.SelectStudent(studentID, navigateToHome);
     }
 
     void navigateToHome()
     {
-        if(passwordText.text!=null && student.password.CompareTo(passwordText.text.Trim((char)8203))==0)
+        student = serverControllerStudents.currentStudent;
+        if(!string.IsNullOrEmpty(student.password) && student.password.CompareTo(passwordText.text.Trim((char)8203))==0)
         {
             HomePage.SetActive(true);
             this.gameObject.SetActive(false);

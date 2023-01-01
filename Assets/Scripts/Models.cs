@@ -74,7 +74,7 @@ public class Student
 
         this.workStatus = "Working";
 
-        this.reqruitmentDate = DateTime.Now.ToString("dd-mm-yyyy");
+        this.reqruitmentDate = DateTime.Now.ToString("dd-MM-yyyy");
 
         Debug.Log($"OBJECT CREATED SUCCESSFULLY\n"+this.ToString());
     }

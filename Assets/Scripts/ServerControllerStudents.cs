@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Networking;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class ServerControllerStudents : MonoBehaviour
 {
@@ -127,10 +128,47 @@ public class ServerControllerStudents : MonoBehaviour
     {
         yield return 0;
     }
-
-    IEnumerator SelectStudentIdsSQL(Student student)
+    public void SelectStudentIds(string CommitteName="", Action action = null)
     {
-        yield return 0;
+        StartCoroutine(SelectStudentIdsSQL(CommitteName, action));
+    }
+    IEnumerator SelectStudentIdsSQL(string CommitteName="", Action action = null)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("selectCommitteName", CommitteName);
+
+        string URL = "http://club-management-system.000webhostapp.com/selectStudentIds.php";
+
+        using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
+        {
+            yield return www.SendWebRequest();
+
+            if(www.isNetworkError || www.isHttpError)
+            {
+                Debug.Log(www.error);
+            }
+            else if(www.downloadHandler.text.Contains("ERROR"))
+            {
+                Debug.Log(www.downloadHandler.text);
+            }
+            else
+            {
+                Debug.Log(www.downloadHandler.text);
+                string []response = www.downloadHandler.text.Split("|");
+
+                List<int> temp = new List<int>();
+                foreach(string x in response)
+                {
+                    if(int.TryParse(x, out int res))
+                    {
+                        temp.Add(res);
+                    }
+                }
+                studentIds = temp.ToArray();
+
+                if(action!=null) action();
+            }
+        }
     }
 
 }

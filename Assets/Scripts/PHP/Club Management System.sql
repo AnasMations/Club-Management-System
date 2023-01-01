@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS `id20082774_club_management_system`;
+-- DROP DATABASE IF EXISTS `id20082774_club_management_system`;
 CREATE DATABASE IF NOT EXISTS `id20082774_club_management_system`;
 USE `id20082774_club_management_system`;
 
@@ -130,3 +130,6 @@ LEFT JOIN College c ON s.StudentID = c.StudentID
 LEFT JOIN CommitteMember cm ON s.StudentID = cm.StudentID
 WHERE s.StudentID = 202000005
 LIMIT 1;
+
+SELECT * FROM WorksFor;
+
