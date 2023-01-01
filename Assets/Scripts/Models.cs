@@ -25,6 +25,11 @@ public class Student
     public int tasksInProgress = 0;
     public int tasksNotStarted = 0;
 
+    public Student()
+    {
+
+    }
+
     public Student(
     string emailText,
     string passwordText,
@@ -65,7 +70,35 @@ public class Student
 
         this.role = roleText.Trim((char)8203);
 
-        Debug.Log($"Object Student {this.studentID} {this.firstName} was Created\n");
+        this.workStatus = "Working";
+
+        this.reqruitmentDate = DateTime.Now.ToString("dd-mm-yyyy");
+
+        Debug.Log($"OBJECT CREATED SUCCESSFULLY\n"+this.ToString());
+    }
+
+    public override string ToString()
+    {
+        string s = $"StudentID: {studentID}\n"+
+        $"Full Name: {firstName} {lastName}\n"+
+        $"Gender: {gender}\n"+
+        $"Email: {email}\n"+
+        $"Phone Number: {phoneNumber}\n"+
+        $"Birthdate: {birthDate}\n"+
+        $"Major: {major}\n"+
+        $"Graduation Year: {graduationYear}\n"+
+        "\n"+
+        $"Committe Name: {committeName}\n"+
+        $"position: {position}\n"+
+        $"role: {role}\n"+
+        $"Work Status: {workStatus}\n"+
+        $"Reqruitment Date: {reqruitmentDate}\n"+
+        "\n"+
+        $"Tasks Finished: {tasksFinished}\n"+
+        $"Tasks In Progress: {tasksInProgress}\n"+
+        $"Tasks Not Started: {tasksNotStarted}"
+        ;
+        return s;
     }
 }
 

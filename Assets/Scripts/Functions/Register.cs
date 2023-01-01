@@ -22,11 +22,11 @@ public class Register : MonoBehaviour
 
     public GameObject LoginPage;
 
-    ServerController serverController;
+    public ServerControllerStudents serverControllerStudents;
 
     void Start()
     {
-        serverController = GameObject.FindGameObjectWithTag("ServerController").GetComponent<ServerController>();
+        serverControllerStudents = GameObject.FindGameObjectWithTag("ServerControllerStudents").GetComponent<ServerControllerStudents>();
     }
 
     // Update is called once per frame
@@ -60,12 +60,31 @@ public class Register : MonoBehaviour
         // }
 
         Student student = new Student(emailText.text, passwordText.text, phoneNumberText.text, studentID, firstNameText.text, lastNameText.text, genderText.text, birthdateText.text, majorText.text, graduationYear, committeNameText.text, positionText.text, roleText.text);
-        StartCoroutine(serverController.InsertStudentSQL(student, navigateToLogin));
+        serverControllerStudents.InsertStudent(student, navigateToLogin);
     }
 
     void navigateToLogin()
     {
         LoginPage.SetActive(true);
         this.gameObject.SetActive(false);
+        clearData();
+    }
+
+    void clearData()
+    {
+        emailText.text = "";
+        passwordText.text = "";
+        confirmPasswordText.text = "";
+        phoneNumberText.text = "";
+        studentIDText.text = "";
+        firstNameText.text = "";
+        lastNameText.text = "";
+        genderText.text = "";
+        birthdateText.text = "";
+        majorText.text = "";
+        graduationYearText.text = "";
+        committeNameText.text = "";
+        positionText.text = "";
+        roleText.text = "";
     }
 }

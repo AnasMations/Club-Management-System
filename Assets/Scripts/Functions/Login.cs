@@ -8,12 +8,13 @@ public class Login : MonoBehaviour
     public TMP_InputField studentIDText;
     public TMP_InputField passwordText;
     public GameObject HomePage;
+    public ServerControllerStudents serverControllerStudents;
 
-    ServerController serverController;
+    Student student;
 
     void Start()
     {
-        serverController = GameObject.FindGameObjectWithTag("ServerController").GetComponent<ServerController>();
+        serverControllerStudents = GameObject.FindGameObjectWithTag("ServerControllerStudents").GetComponent<ServerControllerStudents>();
     }
 
     // Update is called once per frame
@@ -26,15 +27,22 @@ public class Login : MonoBehaviour
     {
         int studentID = int.Parse(studentIDText.text);
 
-        StartCoroutine(serverController.SelectStudentSQL(studentID, login));
+        student = serverControllerStudents.SelectStudent(studentID, navigateToHome);
     }
 
-    void login()
+    void navigateToHome()
     {
-        if(serverController.connectedStudent.password.CompareTo(passwordText.text.Trim((char)8203))==0)
+        if(student.password.CompareTo(passwordText.text.Trim((char)8203))==0)
         {
             HomePage.SetActive(true);
             this.gameObject.SetActive(false);
+            clearData();
         }
+    }
+
+    void clearData()
+    {
+        studentIDText.text = "";
+        passwordText.text = "";
     }
 }

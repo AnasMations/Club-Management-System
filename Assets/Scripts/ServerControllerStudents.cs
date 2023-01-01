@@ -4,22 +4,17 @@ using UnityEngine.Networking;
 using UnityEngine;
 using System;
 
-public class ServerController : MonoBehaviour
+public class ServerControllerStudents : MonoBehaviour
 {
-    public Student connectedStudent;
-    // Start is called before the first frame update
-    void Start()
+    public Student currentStudent;
+    public int []studentIds;
+
+    public void InsertStudent(Student student, Action action = null)
     {
-        
+        StartCoroutine(InsertStudentSQL(student, action));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public IEnumerator InsertStudentSQL(Student student, Action action = null)
+    IEnumerator InsertStudentSQL(Student student, Action action = null)
     {
         WWWForm form = new WWWForm();
         form.AddField("addStudentID",  student.studentID);
@@ -48,22 +43,18 @@ public class ServerController : MonoBehaviour
             else
             {
                 Debug.Log(www.downloadHandler.text);
-                action();
+                if(action!=null) action();
             }
         }
     }
 
-    public IEnumerator UpdateStudentSQL(Student student)
+    public Student SelectStudent(int studentID, Action action = null)
     {
-        yield return 0;
+        StartCoroutine(SelectStudentSQL(studentID, action));
+        return currentStudent; //TODO Need to finish coroutine before returning Student
     }
-
-    public IEnumerator DeleteStudentSQL(Student student)
-    {
-        yield return 0;
-    }
-
-    public IEnumerator SelectStudentSQL(int studentID, Action action = null)
+    
+    IEnumerator SelectStudentSQL(int studentID, Action action = null)
     {
         WWWForm form = new WWWForm();
         form.AddField("selectStudentID", studentID);
@@ -86,17 +77,38 @@ public class ServerController : MonoBehaviour
             {
                 Debug.Log(www.downloadHandler.text);
                 string []response = www.downloadHandler.text.Split("|");
-                connectedStudent.studentID = int.Parse(response[0]);
-                connectedStudent.firstName = response[1];
-                connectedStudent.lastName = response[2];
-                connectedStudent.email = response[3];
-                connectedStudent.password = response[4];
-                connectedStudent.position = response[5];
-                connectedStudent.gender = response[6];
-                connectedStudent.birthDate = response[7];
 
-                action();
+                Student s = new Student();
+                
+                s.studentID = int.Parse(response[0]);
+                s.firstName = response[1];
+                s.lastName = response[2];
+                s.email = response[3];
+                s.password = response[4];
+                s.position = response[5];
+                s.gender = response[6];
+                s.birthDate = response[7];
+
+                currentStudent = s;
+
+                if(action!=null) action();
             }
         }
     }
+
+    IEnumerator UpdateStudentSQL(Student student)
+    {
+        yield return 0;
+    }
+
+    IEnumerator DeleteStudentSQL(Student student)
+    {
+        yield return 0;
+    }
+
+    IEnumerator SelectAllStudentIdsSQL(Student student)
+    {
+        yield return 0;
+    }
+
 }
