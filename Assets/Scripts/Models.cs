@@ -107,11 +107,21 @@ public class Student
 [Serializable]
 public class Task
 {
-    public int studentID;
-    public string studentName;
-    public string committeName;
     public int taskID;
-    public string taskName;
-    public string taskDeadline;
-    public string taskStatus;
+    public int studentID=0;
+    public string taskName="";
+    public string taskDate="";
+    public string taskStatus="";
+    public string studentFisrtName="";
+    public string studentLastName="";
+    public string committeName="";
+
+    public Task(int studentID, string taskName, string committeName)
+    {
+        this.studentID = studentID;
+        this.taskName = taskName;
+        this.committeName = committeName;
+        this.taskStatus="Not Started";
+        this.taskDate = DateTime.Now.ToString("dd-MM-yyyy");
+    }
 }

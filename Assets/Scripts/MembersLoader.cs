@@ -23,18 +23,17 @@ public class MembersLoader : MonoBehaviour
 
     void LoadStudentIds()
     {
+        foreach(Transform child in content)
+        {
+            Destroy(child.gameObject);
+        }
+
         serverControllerStudents.SelectStudentIds("", LoadMembers);
     }
 
     void LoadMembers()
     {
-
         StudentIDs = serverControllerStudents.studentIds;
-
-        foreach(Transform child in content)
-        {
-            Destroy(child.gameObject);
-        }
 
         foreach(int id in StudentIDs)
         {

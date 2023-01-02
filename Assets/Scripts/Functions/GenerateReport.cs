@@ -21,13 +21,20 @@ public class GenerateReport : MonoBehaviour
     {
         
     }
-
-    // Calling the function from button click
+    public void AssignTask()
+    {
+        serverControllerStudents.DeleteStudent("Student", student.studentID);
+    }
+    public void Delete()
+    {
+        serverControllerStudents.DeleteStudent("Student", student.studentID);
+    }
     public void ReportInfo(Student s)
     {
+        student = s;
         ReportPage.SetActive(true);
-        infoText.text = s.ToString();
-        Debug.Log("REPORT\n"+s.ToString());
+        infoText.text = student.ToString();
+        Debug.Log("REPORT\n"+student.ToString());
     }
 
     public void ReportInfo(int studentID)

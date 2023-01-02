@@ -124,9 +124,38 @@ public class ServerControllerStudents : MonoBehaviour
         yield return 0;
     }
 
-    IEnumerator DeleteStudentSQL(Student student)
+    public void DeleteStudent(string Type, int ID, Action action = null)
     {
-        yield return 0;
+        StartCoroutine(DeleteStudentSQL(Type, ID, action));
+    }
+
+    IEnumerator DeleteStudentSQL(string Type, int ID, Action action = null)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("selectType", Type);
+        form.AddField("selectID", ID);
+
+        string URL = "http://club-management-system.000webhostapp.com/delete.php";
+
+        using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
+        {
+            yield return www.SendWebRequest();
+
+            if(www.isNetworkError || www.isHttpError)
+            {
+                Debug.Log(www.error);
+            }
+            else if(www.downloadHandler.text.Contains("ERROR"))
+            {
+                Debug.Log(www.downloadHandler.text);
+            }
+            else
+            {
+                Debug.Log(www.downloadHandler.text);
+
+                if(action!=null) action();
+            }
+        }
     }
     public void SelectStudentIds(string CommitteName="", Action action = null)
     {

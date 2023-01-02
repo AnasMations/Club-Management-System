@@ -1,4 +1,4 @@
--- DROP DATABASE IF EXISTS `id20082774_club_management_system`;
+DROP DATABASE IF EXISTS `id20082774_club_management_system`;
 CREATE DATABASE IF NOT EXISTS `id20082774_club_management_system`;
 USE `id20082774_club_management_system`;
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS Task
 
 CREATE TABLE IF NOT EXISTS Assigned
 (
-  TaskDeadline VARCHAR(200),
+  TaskDate VARCHAR(200),
   TaskStatus VARCHAR(200) NOT NULL,
   StudentID INT NOT NULL,
   TaskID INT NOT NULL,
@@ -112,7 +112,7 @@ INSERT INTO Task (TaskName, CommitteName) VALUES
 ('Design UGRF Poster', 'Media'),
 ('Video editing', 'Media');
 
-INSERT INTO Assigned (TaskDeadline, TaskStatus, TaskID, StudentID) VALUES
+INSERT INTO Assigned (TaskDate, TaskStatus, TaskID, StudentID) VALUES
 ('30-1-2023', 'Not Started', 1, 202000005),
 ('30-1-2023', 'In Progress', 2, 202000038),
 ('30-1-2023', 'Finished', 3, 202000038);
