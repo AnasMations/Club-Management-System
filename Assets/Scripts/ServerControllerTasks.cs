@@ -12,8 +12,8 @@ public class ServerControllerTasks : MonoBehaviour
 
     void Start()
     {
-        Task task = new Task(202000005, "Task TEST", "Media");
-        InsertTask(task);
+        // Task task = new Task(202000005, "Task TEST", "Media");
+        // InsertTask(task);
     }
 
     public void InsertTask(Task task, Action action = null)

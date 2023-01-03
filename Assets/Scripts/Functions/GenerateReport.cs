@@ -8,11 +8,14 @@ public class GenerateReport : MonoBehaviour
     public TMP_Text infoText;
     public GameObject ReportPage;
     public ServerControllerStudents serverControllerStudents;
+    public ServerControllerTasks serverControllerTasks;
+    public TMP_InputField taskName;
     Student student;
 
     void Start()
     {
         serverControllerStudents = GameObject.FindGameObjectWithTag("ServerController").GetComponent<ServerControllerStudents>();
+        serverControllerTasks = GameObject.FindGameObjectWithTag("ServerController").GetComponent<ServerControllerTasks>();
         //ReportInfo();
     }
 
@@ -23,7 +26,10 @@ public class GenerateReport : MonoBehaviour
     }
     public void AssignTask()
     {
-        serverControllerStudents.DeleteStudent("Student", student.studentID);
+        string taskname = this.taskName.text.Trim((char)8203);
+        if(!string.IsNullOrEmpty(taskname)){
+            serverControllerTasks.InsertTask(new Task(student.studentID, taskname, student.committeName));
+        }
     }
     public void Delete()
     {

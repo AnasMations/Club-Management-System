@@ -12291,6 +12291,8 @@ MonoBehaviour:
   infoText: {fileID: 1129969337}
   ReportPage: {fileID: 1111917418}
   serverControllerStudents: {fileID: 1241404031}
+  serverControllerTasks: {fileID: 1241404032}
+  taskName: {fileID: 128891787}
 --- !u!1 &1129969335
 GameObject:
   m_ObjectHideFlags: 0
@@ -15089,7 +15091,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1401691458}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1111917423}
+        m_TargetAssemblyTypeName: GenerateReport, Assembly-CSharp
+        m_MethodName: AssignTask
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1111917418}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1939183158}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1401691458
 MonoBehaviour:
   m_ObjectHideFlags: 0

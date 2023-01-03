@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS Task
   TaskName VARCHAR (200) NOT NULL,
   CommitteName VARCHAR (200) NOT NULL,
   PRIMARY KEY (TaskID),
-  FOREIGN KEY (CommitteName) REFERENCES Committe(CommitteName) ON DELETE CASCADE
+  FOREIGN KEY (CommitteName) REFERENCES Committe(CommitteName) ON DELETE CASCADE ON UPDATE NO ACTION
 );
 
 CREATE TABLE IF NOT EXISTS Assigned
@@ -36,8 +36,12 @@ CREATE TABLE IF NOT EXISTS Assigned
   TaskStatus VARCHAR(200) NOT NULL,
   StudentID INT NOT NULL,
   TaskID INT NOT NULL,
-  FOREIGN KEY (StudentID) REFERENCES Student(StudentID) ON DELETE CASCADE,
-  FOREIGN KEY (TaskID) REFERENCES Task(TaskID) ON DELETE CASCADE
+  FOREIGN KEY (StudentID) REFERENCES Student(StudentID) 
+	ON DELETE CASCADE 
+	ON UPDATE NO ACTION,
+  FOREIGN KEY (TaskID) REFERENCES Task(TaskID) 
+	ON DELETE CASCADE 
+	ON UPDATE NO ACTION
 );
 
 CREATE TABLE IF NOT EXISTS College
@@ -112,24 +116,34 @@ INSERT INTO Task (TaskName, CommitteName) VALUES
 ('Design UGRF Poster', 'Media'),
 ('Video editing', 'Media');
 
-INSERT INTO Assigned (TaskDate, TaskStatus, TaskID, StudentID) VALUES
-('30-1-2023', 'Not Started', 1, 202000005),
-('30-1-2023', 'In Progress', 2, 202000038),
-('30-1-2023', 'Finished', 3, 202000038);
+INSERT INTO Assigned (TaskDate, TaskStatus, StudentID, TaskID) VALUES
+('30-1-2023', 'Not Started', 202000005, 1),
+('30-1-2023', 'In Progress', 202000038, 2),
+('30-1-2023', 'Finished', 202000038, 3);
 
 SELECT 
-s.StudentID, s.FirstName, s.LastName, s.Email, s.Password, s.Position, s.Gender, s.Birthdate, 
+s.StudentID , s.FirstName , s.LastName , s.Email , s.Password , s.Position , s.Gender , s.Birthdate, 
 w.WorkStatus, w.RecruitmentDate, w.CommitteName,
 p.PhoneNumber,
-c.Major, c.Graduationyear,
-cm.Role
-FROM Student s
+c.Major, c.Graduationyear, 
+cm.Role,
+( SELECT COUNT(TaskStatus) FROM Assigned a WHERE a.TaskStatus='Not Started'AND s.StudentID= a.StudentID) AS 'Tasks Not Started', 
+( SELECT COUNT(TaskStatus) FROM Assigned a WHERE a.TaskStatus='In Progress' AND s.StudentID= a.StudentID) AS 'Tasks In Progress', 
+( SELECT COUNT(TaskStatus) FROM Assigned a WHERE a.TaskStatus='Finished' AND s.StudentID= a.StudentID) AS 'Tasks Finished'
+FROM Student s 
 LEFT JOIN WorksFor w ON s.StudentID = w.StudentID
 LEFT JOIN PhoneNumber p ON s.StudentID = p.StudentID
 LEFT JOIN College c ON s.StudentID = c.StudentID
 LEFT JOIN CommitteMember cm ON s.StudentID = cm.StudentID
-WHERE s.StudentID = 202000005
-LIMIT 1;
+JOIN Assigned a ON s.StudentID = a.StudentID
+WHERE s.StudentID = 202000038 Limit 1;
 
-SELECT * FROM WorksFor;
+SELECT StudentID FROM WorksFor WHERE CommitteName = 'Media';
 
+SELECT t.TaskID, s.FirstName, s.LastName FROM Task t
+LEFT JOIN Assigned a ON t.TaskID = a.TaskID
+LEFT JOIN Student s ON s.StudentID = a.StudentID
+ORDER BY TaskID DESC LIMIT 1;
+
+INSERT INTO Task (TaskName, CommitteName) 
+VALUES ('69', 'Media');
