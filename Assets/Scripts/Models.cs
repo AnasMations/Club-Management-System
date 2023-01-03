@@ -116,6 +116,11 @@ public class Task
     public string studentLastName="";
     public string committeName="";
 
+    public Task()
+    {
+
+    }
+    
     public Task(int studentID, string taskName, string committeName)
     {
         this.studentID = studentID;
