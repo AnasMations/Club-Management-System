@@ -145,5 +145,12 @@ LEFT JOIN Assigned a ON t.TaskID = a.TaskID
 LEFT JOIN Student s ON s.StudentID = a.StudentID
 ORDER BY TaskID DESC LIMIT 1;
 
-INSERT INTO Task (TaskName, CommitteName) 
-VALUES ('69', 'Media');
+UPDATE Assigned
+SET TaskStatus = "In Progress"
+WHERE TaskID = 1;
+
+SELECT t.TaskID, t.TaskName, t.CommitteName, a.TaskDate, a.TaskStatus, s.FirstName, s.LastName 
+FROM Task t
+LEFT JOIN Assigned a ON t.TaskID = a.TaskID
+LEFT JOIN Student s ON s.StudentID = a.StudentID
+WHERE t.TaskID = 1;
