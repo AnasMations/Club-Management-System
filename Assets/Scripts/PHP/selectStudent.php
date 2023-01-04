@@ -49,7 +49,11 @@ if(mysqli_num_rows($result)>0)
         $row['Major']."|". 
         $row['Graduationyear']."|". 
 
-        $row['Role']."|" 
+        $row['Role']."|".
+
+        $row['Tasks Not Started']."|".
+        $row['Tasks In Progress']."|".
+        $row['Tasks Finished']."|"
         ;
     }
 }else

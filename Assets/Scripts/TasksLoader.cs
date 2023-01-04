@@ -26,7 +26,7 @@ public class TasksLoader : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        
+
         serverControllerTasks.SelectTaskIds("", LoadTask);
     }
 
@@ -49,5 +49,10 @@ public class TasksLoader : MonoBehaviour
     public void DeleteTask(Task task)
     {
         serverControllerTasks.DeleteTask("Task", task.taskID);
+    }
+
+    public void UpdateTaskStatus(Task task)
+    {
+        serverControllerTasks.UpdateTask(task);
     }
 }

@@ -112,6 +112,10 @@ public class ServerControllerStudents : MonoBehaviour
 
                 s.role = response[14];
 
+                s.tasksNotStarted = int.Parse(response[15]);
+                s.tasksInProgress = int.Parse(response[16]);
+                s.tasksFinished = int.Parse(response[17]);
+
                 currentStudent = s;
 
                 if(action!=null) action();

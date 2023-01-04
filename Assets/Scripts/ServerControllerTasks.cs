@@ -99,10 +99,37 @@ public class ServerControllerTasks : MonoBehaviour
             }
         }
     }
-
-    IEnumerator UpdateTaskSQL(Task task)
+    public void UpdateTask(Task task, Action action = null)
     {
-        yield return 0;
+        StartCoroutine(UpdateTaskSQL(task, action));
+    }
+    IEnumerator UpdateTaskSQL(Task task, Action action = null)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("selectTaskID", task.taskID);
+        form.AddField("updateTaskStatus", task.taskStatus);
+
+        string URL = "http://club-management-system.000webhostapp.com/updateTask.php";
+
+        using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
+        {
+            yield return www.SendWebRequest();
+
+            if(www.isNetworkError || www.isHttpError)
+            {
+                Debug.Log(www.error);
+            }
+            else if(www.downloadHandler.text.Contains("ERROR"))
+            {
+                Debug.Log(www.downloadHandler.text);
+            }
+            else
+            {
+                Debug.Log(www.downloadHandler.text);
+
+                if(action!=null) action();
+            }
+        }
     }
 
     public void DeleteTask(string Type, int ID, Action action = null)
